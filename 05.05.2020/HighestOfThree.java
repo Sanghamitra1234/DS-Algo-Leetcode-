@@ -1,0 +1,29 @@
+//int [] arr= {-10,-9,1,2,4,3,-6,-5};
+
+public class HighestOfThree {
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+			int [] arr= {-10,-9,1,2,4,3,-6,-5};
+			if(arr.length<3) {
+				throw new Exception("Cant be less than 3");
+			}
+			
+			int highOf2=arr[0]*arr[1];
+			int lowOf2=arr[0]*arr[1];
+			int max=arr[0]*arr[1]*arr[2];
+			
+			for(int i=2;i<arr.length;i++) {
+				int current=arr[i];
+				
+				max=Math.max(max, Math.max(current*highOf2, lowOf2*current));
+				
+				highOf2=Math.max(Math.max(highOf2, arr[i-1]*arr[i-2]), Math.max(arr[i]*arr[i-2], arr[i]*arr[i-1]));
+				lowOf2=Math.min(Math.min(highOf2, arr[i-1]*arr[i-2]), Math.min(arr[i]*arr[i-2], arr[i]*arr[i-1]));
+				
+				
+			}
+			System.out.print(max);
+	}
+
+}
